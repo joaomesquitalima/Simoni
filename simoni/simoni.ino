@@ -65,7 +65,7 @@ void Start(){
 
 
   tone(BUZZER_PIN, 400, 300);
-   digitalWrite(LED_VERMELHO,HIGH);
+  digitalWrite(LED_VERMELHO,HIGH);
   delay(100);
   digitalWrite(LED_VERMELHO,LOW);
 
@@ -76,13 +76,13 @@ void Start(){
   digitalWrite(LED_AZUL, LOW);
 
   tone(BUZZER_PIN, 400, 300);
-   digitalWrite(LED_VERMELHO,HIGH);
+  digitalWrite(LED_VERMELHO,HIGH);
   delay(100);
   digitalWrite(LED_VERMELHO,LOW);
 
 
   tone(BUZZER_PIN, 400, 300);
-   digitalWrite(LED_VERMELHO,HIGH);
+  digitalWrite(LED_VERMELHO,HIGH);
   delay(100);
   digitalWrite(LED_VERMELHO,LOW);
 
@@ -119,16 +119,16 @@ void gerador(){
   int indice_lista = 0; 
 
   //  cria a lista
-    for (int i = 0; i <tam; i++) {
-        for (int j = 0; j <= i; j++) {
-            int newNumber = random(3);
-            lista[indice_lista] = newNumber;
-            indice_lista = indice_lista + 1;
-        }
-    }
+  for (int i = 0; i <tam; i++) {
+      for (int j = 0; j <= i; j++) {
+          int newNumber = random(3);
+          lista[indice_lista] = newNumber;
+          indice_lista = indice_lista + 1;
+      }
+  }
 
   // cria o vetor de vetores
-  for (int i = 0; i <tam; i++) {
+  for (int i = 0; i < tam; i++) {
         v[i] = new int[i + 1];  
         for (int j = 0; j <= i; j++) {
             v[i][j] = lista[j];
@@ -136,36 +136,39 @@ void gerador(){
     }
 
 
-    for (int i = 0; i < tam; i++) {
-      delay(1000);
-      int tamanho = 0;
-      for (int j = 0; j <= i; j++) {
-        
-        if (v[i][j] == 0){
-          digitalWrite(LED_VERMELHO,HIGH);
-          tone(BUZZER_PIN, 400, 700);
-          delay(700); 
-          digitalWrite(LED_VERMELHO, LOW);
-        }
-
-        if (v[i][j] == 1){
-          digitalWrite(LED_AZUL,HIGH);
-          tone(BUZZER_PIN, 400, 700);
-          delay(700); 
-          digitalWrite(LED_AZUL, LOW);
-        }
-
-        if (v[i][j] == 2){
-          digitalWrite(LED_VERDE,HIGH);
-          tone(BUZZER_PIN, 400, 700);
-          delay(700); 
-          digitalWrite(LED_VERDE, LOW);
-        }
-        tamanho = tamanho + 1;
+  for (int i = 0; i < tam; i++) {
+    delay(1000);
+    int tamanho = 0;
+    for (int j = 0; j <= i; j++) {
+      
+      if (v[i][j] == 0){
+        digitalWrite(LED_VERMELHO,HIGH);
+        tone(BUZZER_PIN, 400, 700);
+        delay(700);
+        digitalWrite(LED_VERMELHO, LOW);
+        delay(900); 
       }
-      // logica pra espera da sequencia
-      int vetor_temp[tamanho];
-      int btns_apertados = 0;
+
+      if (v[i][j] == 1){
+        digitalWrite(LED_AZUL,HIGH);
+        tone(BUZZER_PIN, 400, 700);
+        delay(700);
+        digitalWrite(LED_AZUL, LOW);
+        delay(900); 
+      }
+
+      if (v[i][j] == 2){
+        digitalWrite(LED_VERDE,HIGH);
+        tone(BUZZER_PIN, 400, 700);
+        delay(700);
+        digitalWrite(LED_VERDE, LOW);
+        delay(900);
+      }
+      tamanho = tamanho + 1;
+    }
+    // logica pra espera da sequencia
+    int vetor_temp[tamanho];
+    int btns_apertados = 0;
 
       
       vetor_temp[tamanho] = new int[tamanho];  
@@ -203,10 +206,10 @@ void gerador(){
             vetor_temp[i] = 2;
             break;
             }
-            if (digitalRead(btn3) == LOW) estadoBtn3 = false;  
-
-                      
+            if (digitalRead(btn3) == LOW) estadoBtn3 = false;             
         }
+
+
       }  
       if (compararVetores(v[tamanho - 1],vetor_temp,tamanho) == false){
         tone(BUZZER_PIN, 102, 400);
@@ -237,11 +240,6 @@ void loop() {
     if(digitalRead(START) == HIGH){
       Start();
     }
-
-
-
-    
-
     
 }
 
