@@ -101,15 +101,6 @@ void Start(){
   gerador();
 }
 
-bool compararVetores(int v1[], int v2[], int tam) {
-  for (int i = 0; i < tam; i++) {
-    if (v1[i] != v2[i]) {  // Se um elemento não for igual
-      return false;  // Vetores não são iguais
-    }
-  }
-  return true;  // Vetores são iguais
-}
-
 void gerador(){
   int numero = random(2);
   int tam = 10;
