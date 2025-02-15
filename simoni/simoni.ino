@@ -139,6 +139,7 @@ void gerador(){
   for (int i = 0; i < tam; i++) {
     delay(1000);
     int tamanho = 0;
+    int num_vetor = 0;
     for (int j = 0; j <= i; j++) {
       
       if (v[i][j] == 0){
@@ -165,6 +166,7 @@ void gerador(){
         delay(900);
       }
       tamanho = tamanho + 1;
+      num_vetor = j;
     }
     // logica pra espera da sequencia
     int vetor_temp[tamanho];
@@ -172,6 +174,7 @@ void gerador(){
 
       
       vetor_temp[tamanho] = new int[tamanho];  
+   
       for (int i = 0; i < tamanho; i++) {
         while(true){  
           // apertar botão 1 
@@ -206,36 +209,40 @@ void gerador(){
             vetor_temp[i] = 2;
             break;
             }
-            if (digitalRead(btn3) == LOW) estadoBtn3 = false;             
+            if (digitalRead(btn3) == LOW) estadoBtn3 = false;  
+
+
         }
 
+        
+        if(vetor_temp[i] != v[num_vetor][i]){
+          tone(BUZZER_PIN, 102, 400);
+          digitalWrite(LED_VERDE, HIGH);
+          delay(400);
+          digitalWrite(LED_VERDE, LOW);
+          tone(BUZZER_PIN, 202, 400);
+          digitalWrite(LED_AZUL, HIGH);
+          delay(400);
+          digitalWrite(LED_AZUL, LOW);
+          
+          tone(BUZZER_PIN, 102, 400);
+          digitalWrite(LED_VERMELHO, HIGH);
+          delay(400);
+          digitalWrite(LED_VERMELHO, LOW);
+          
+          
+          wdt_enable(WDTO_15MS);  // Configura o WDT para 15ms
+          while (1) {
+              // Loop infinito para aguardar o reset
+          }
+        }
+
+       
 
       }  
-      if (compararVetores(v[tamanho - 1],vetor_temp,tamanho) == false){
-        tone(BUZZER_PIN, 102, 400);
-        digitalWrite(LED_VERDE, HIGH);
-        delay(400);
-        digitalWrite(LED_VERDE, LOW);
-        tone(BUZZER_PIN, 202, 400);
-        digitalWrite(LED_AZUL, HIGH);
-        delay(400);
-        digitalWrite(LED_AZUL, LOW);
-        
-        tone(BUZZER_PIN, 102, 400);
-        digitalWrite(LED_VERMELHO, HIGH);
-        delay(400);
-        digitalWrite(LED_VERMELHO, LOW);
-        
-        
-        wdt_enable(WDTO_15MS);  // Configura o WDT para 15ms
-        while (1) {
-            // Loop infinito para aguardar o reset
-        }
-      };   
-    }
+
 
 }
-
 void loop() {
     if(digitalRead(START) == HIGH){
       Start();
