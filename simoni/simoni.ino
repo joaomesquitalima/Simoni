@@ -164,75 +164,72 @@ void gerador(){
     int btns_apertados = 0;
 
       
-      vetor_temp[tamanho] = new int[tamanho];  
-   
-      for (int i = 0; i < tamanho; i++) {
-        while(true){  
-          // apertar botão 1 
-          if (digitalRead(btn1) == HIGH && !estadoBtn1) {  
-              estadoBtn1 = true;  
-              digitalWrite(LED_VERMELHO, HIGH);
-              tone(BUZZER_PIN, 400, 400);
-              delay(400); 
-              digitalWrite(LED_VERMELHO, LOW);
-              vetor_temp[i] = 0;
-              break;
-          }
-          if (digitalRead(btn1) == LOW) {estadoBtn1 = false;}
+  vetor_temp[tamanho] = new int[tamanho];  
 
-          if (digitalRead(btn2) == HIGH && !estadoBtn2) {  
-            estadoBtn2 = true;  
-            digitalWrite(LED_AZUL, HIGH);
-            tone(BUZZER_PIN, 500, 200);
-            delay(400);
-            digitalWrite(LED_AZUL, LOW);
-            vetor_temp[i] = 1;
-            break;
-          }
-          if (digitalRead(btn2) == LOW) estadoBtn2 = false; 
-
-          if (digitalRead(btn3) == HIGH && !estadoBtn3) {  
-            estadoBtn3 = true;  
-            digitalWrite(LED_VERDE, HIGH);
-            tone(BUZZER_PIN, 600, 200);
-            delay(200);
-            digitalWrite(LED_VERDE, LOW);
-            vetor_temp[i] = 2;
-            break;
-            }
-            if (digitalRead(btn3) == LOW) estadoBtn3 = false;  
-
-
-        }
-
-        
-        if(vetor_temp[i] != v[num_vetor][i]){
-          tone(BUZZER_PIN, 102, 400);
-          digitalWrite(LED_VERDE, HIGH);
-          delay(400);
-          digitalWrite(LED_VERDE, LOW);
-          tone(BUZZER_PIN, 202, 400);
-          digitalWrite(LED_AZUL, HIGH);
-          delay(400);
-          digitalWrite(LED_AZUL, LOW);
-          
-          tone(BUZZER_PIN, 102, 400);
+  for (int i = 0; i < tamanho; i++) {
+    while(true){  
+      // apertar botão 1 
+      if (digitalRead(btn1) == HIGH && !estadoBtn1) {  
+          estadoBtn1 = true;  
           digitalWrite(LED_VERMELHO, HIGH);
-          delay(400);
+          tone(BUZZER_PIN, 400, 400);
+          delay(400); 
           digitalWrite(LED_VERMELHO, LOW);
-          
-          
-          wdt_enable(WDTO_15MS);  // Configura o WDT para 15ms
-          while (1) {
-              // Loop infinito para aguardar o reset
-          }
+          vetor_temp[i] = 0;
+          break;
+      }
+      if (digitalRead(btn1) == LOW) {estadoBtn1 = false;}
+
+      if (digitalRead(btn2) == HIGH && !estadoBtn2) {  
+        estadoBtn2 = true;  
+        digitalWrite(LED_AZUL, HIGH);
+        tone(BUZZER_PIN, 500, 200);
+        delay(400);
+        digitalWrite(LED_AZUL, LOW);
+        vetor_temp[i] = 1;
+        break;
+      }
+      if (digitalRead(btn2) == LOW) estadoBtn2 = false; 
+
+      if (digitalRead(btn3) == HIGH && !estadoBtn3) {  
+        estadoBtn3 = true;  
+        digitalWrite(LED_VERDE, HIGH);
+        tone(BUZZER_PIN, 600, 200);
+        delay(200);
+        digitalWrite(LED_VERDE, LOW);
+        vetor_temp[i] = 2;
+        break;
         }
-
-       
-
-      }  
+        if (digitalRead(btn3) == LOW) estadoBtn3 = false;  
 
 
+    }
+
+    
+    if(vetor_temp[i] != v[num_vetor][i]){
+      tone(BUZZER_PIN, 102, 400);
+      digitalWrite(LED_VERDE, HIGH);
+      delay(400);
+      digitalWrite(LED_VERDE, LOW);
+      tone(BUZZER_PIN, 202, 400);
+      digitalWrite(LED_AZUL, HIGH);
+      delay(400);
+      digitalWrite(LED_AZUL, LOW);
+      
+      tone(BUZZER_PIN, 102, 400);
+      digitalWrite(LED_VERMELHO, HIGH);
+      delay(400);
+      digitalWrite(LED_VERMELHO, LOW);
+      
+      
+      wdt_enable(WDTO_15MS);  // Configura o WDT para 15ms
+      while (1) {
+          // Loop infinito para aguardar o reset
+          }
+        }  
+
+        }  
+    }
 }
 void loop() {
     if(digitalRead(START) == HIGH){
