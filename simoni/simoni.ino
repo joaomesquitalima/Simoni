@@ -26,10 +26,36 @@ void setup() {
     
 }
 
+void blink_red(){
+    digitalWrite(LED_VERMELHO,HIGH);
+    tone(BUZZER_PIN, 400, 700);
+    delay(700);
+    digitalWrite(LED_VERMELHO, LOW);
+    delay(900); 
+}
+
+void blink_blue(){
+    digitalWrite(LED_AZUL,HIGH);
+    tone(BUZZER_PIN, 400, 700);
+    delay(700);
+    digitalWrite(LED_AZUL, LOW);
+    delay(900); 
+}
+
+void blink_green(){
+    digitalWrite(LED_VERDE,HIGH);
+    tone(BUZZER_PIN, 400, 700);
+    delay(700);
+    digitalWrite(LED_VERDE, LOW);
+    delay(900);
+}
+
 void Start(){
+  
   tone(BUZZER_PIN, 400, 300);
   digitalWrite(LED_VERMELHO,HIGH);
   delay(100);
+
   digitalWrite(LED_VERMELHO,LOW);
   tone(BUZZER_PIN, 500, 300);
   digitalWrite(LED_AZUL, HIGH);
@@ -134,28 +160,17 @@ void gerador(){
     for (int j = 0; j <= i; j++) {
       
       if (v[i][j] == 0){
-        digitalWrite(LED_VERMELHO,HIGH);
-        tone(BUZZER_PIN, 400, 700);
-        delay(700);
-        digitalWrite(LED_VERMELHO, LOW);
-        delay(900); 
+        blink_red();
       }
 
       if (v[i][j] == 1){
-        digitalWrite(LED_AZUL,HIGH);
-        tone(BUZZER_PIN, 400, 700);
-        delay(700);
-        digitalWrite(LED_AZUL, LOW);
-        delay(900); 
+        blink_blue();
       }
 
       if (v[i][j] == 2){
-        digitalWrite(LED_VERDE,HIGH);
-        tone(BUZZER_PIN, 400, 700);
-        delay(700);
-        digitalWrite(LED_VERDE, LOW);
-        delay(900);
+        blink_green();
       }
+      
       tamanho = tamanho + 1;
       num_vetor = j;
     }
