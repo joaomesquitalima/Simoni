@@ -166,12 +166,9 @@ void gerador()
             tamanho = tamanho + 1;
             num_vetor = j;
         }
+        // variavel que assume qual botao foi pressionado
+        int estado_var;
 
-        int vetor_temp[tamanho];
-        int din;
-        // int btns_apertados = 0;
-
-        // vetor_temp[tamanho] = new int[tamanho];
 
         for (int i = 0; i < tamanho; i++)
         {
@@ -185,13 +182,10 @@ void gerador()
                     tone(BUZZER_PIN, 400, 400);
                     delay(400);
                     digitalWrite(LED_VERMELHO, LOW);
-                    din = 0;
+                    estado_var = 0;
                     break;
                 }
-                if (digitalRead(btn1) == LOW)
-                {
-                    estadoBtn1 = false;
-                }
+                if (digitalRead(btn1) == LOW){estadoBtn1 = false;}
 
                 if (digitalRead(btn2) == HIGH && !estadoBtn2)
                 {
@@ -200,11 +194,10 @@ void gerador()
                     tone(BUZZER_PIN, 500, 200);
                     delay(400);
                     digitalWrite(LED_AZUL, LOW);
-                    din = 1;
+                    estado_var = 1;
                     break;
                 }
-                if (digitalRead(btn2) == LOW)
-                    estadoBtn2 = false;
+                if (digitalRead(btn2) == LOW){estadoBtn2 = false;}
 
                 if (digitalRead(btn3) == HIGH && !estadoBtn3)
                 {
@@ -213,14 +206,14 @@ void gerador()
                     tone(BUZZER_PIN, 600, 200);
                     delay(200);
                     digitalWrite(LED_VERDE, LOW);
-                    din = 2;
+                    estado_var = 2;
                     break;
                 }
-                if (digitalRead(btn3) == LOW)
-                    estadoBtn3 = false;
+                if (digitalRead(btn3) == LOW){estadoBtn3 = false;}
             }
 
-            if (din != v[num_vetor][i])
+            // checa se o botão pressionado não é correspondente ao da ordem das luzes
+            if (estado_var != v[num_vetor][i])
             {
                 tone(BUZZER_PIN, 102, 400);
                 digitalWrite(LED_VERDE, HIGH);
