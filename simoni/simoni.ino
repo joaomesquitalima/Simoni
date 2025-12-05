@@ -168,9 +168,10 @@ void gerador()
         }
 
         int vetor_temp[tamanho];
-        int btns_apertados = 0;
+        int din;
+        // int btns_apertados = 0;
 
-        vetor_temp[tamanho] = new int[tamanho];
+        // vetor_temp[tamanho] = new int[tamanho];
 
         for (int i = 0; i < tamanho; i++)
         {
@@ -184,7 +185,7 @@ void gerador()
                     tone(BUZZER_PIN, 400, 400);
                     delay(400);
                     digitalWrite(LED_VERMELHO, LOW);
-                    vetor_temp[i] = 0;
+                    din = 0;
                     break;
                 }
                 if (digitalRead(btn1) == LOW)
@@ -199,7 +200,7 @@ void gerador()
                     tone(BUZZER_PIN, 500, 200);
                     delay(400);
                     digitalWrite(LED_AZUL, LOW);
-                    vetor_temp[i] = 1;
+                    din = 1;
                     break;
                 }
                 if (digitalRead(btn2) == LOW)
@@ -212,14 +213,14 @@ void gerador()
                     tone(BUZZER_PIN, 600, 200);
                     delay(200);
                     digitalWrite(LED_VERDE, LOW);
-                    vetor_temp[i] = 2;
+                    din = 2;
                     break;
                 }
                 if (digitalRead(btn3) == LOW)
                     estadoBtn3 = false;
             }
 
-            if (vetor_temp[i] != v[num_vetor][i])
+            if (din != v[num_vetor][i])
             {
                 tone(BUZZER_PIN, 102, 400);
                 digitalWrite(LED_VERDE, HIGH);
